@@ -8,8 +8,8 @@ const configDb = async () => {
         })
         console.log('> MongoDB connected')
     } catch (error) {
-        console.log(error)
-        throw error
+        console.error(error)
+        process.exit(1);
     }
 }
 
