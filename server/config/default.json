@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb://127.0.0.1:27017/wemoovteams",
+    "jwtSecret": "fyzbx9&rh855cer46AQVCWIII6139809IQBNCVXWhkireriu"
+}

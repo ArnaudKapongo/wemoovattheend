@@ -1,20 +1,15 @@
 const express = require('express');
 
-// passport is authentication middleware 
-const passport = require('passport');
-
-const configDb = require('./config/database/db');
-// config environment variable
-require('dotenv').config();
+const connectDB = require('./database/db');
 
 // helmet secure Express apps
 const helmet = require('helmet');
 
 // Connect to database
-configDb();
+connectDB();
 
 // Port used by server
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 5000
 
 const app = express();
 

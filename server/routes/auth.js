@@ -3,8 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const auth = require('../middleware/auth');
 const User = require('../model/User/User');
-const keys = require('../config/keys/keys_dev').secretOrKey;
-const passport = require('passport');
+const config = require('config');
 const { check , validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 
@@ -23,19 +22,6 @@ router.get('/', auth, async(req, res) => {
     }
     res.send('Auth Routes');
 });
-
-/*
-router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
-    
-    res.json({
-        id: req.user.id,
-        name: req.user.name,
-        email: req.user.email
-    });
-});
-
- A travaillé
-*/
 
 /// @route  POST api/auth
 /// @desc   Authenticate user & get token
@@ -63,7 +49,7 @@ router.post('/', [
 
   let user = await User.findOne({ email });
 
-  if(user) {
+  if(!user) {
      return res.status(400).json({ errors: [ { msg: 'Invalid Credentials'} ]});
   }
 
@@ -74,7 +60,6 @@ router.post('/', [
      .json({ errors: [{ msg: 'Invalid Credentials' }] });
   }
 
-
   // Return jsonwebtoken
   const payload = {
       user: {
@@ -83,7 +68,7 @@ router.post('/', [
   }
 
 
-  jwt.sign(payload, keys.secretOrKey,
+  jwt.sign(payload, config.get('jwtSecret'),
   { expiresIn: 360000 },
   ( err, token) => {
       if(err) throw err;
