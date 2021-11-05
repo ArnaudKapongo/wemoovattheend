@@ -9,7 +9,7 @@ const helmet = require('helmet');
 connectDB();
 
 // Port used by server
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8000
 
 const app = express();
 
