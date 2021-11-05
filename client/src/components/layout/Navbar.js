@@ -1,12 +1,14 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
     return (
         <nav className="navbar bg-dark">
             <h1>
-                <a>WemoovTeams</a>
+                <Link to="/">
+                WemoovTeams
+                </Link>
             </h1>
             <ul>
                 <li>Clients</li>
