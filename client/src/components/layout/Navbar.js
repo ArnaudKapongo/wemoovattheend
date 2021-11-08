@@ -10,13 +10,18 @@ const Navbar = ({ auth:  { isAuthenticated, loading }, logout }) => {
     const authLinks = (
     <ul>
         <li>
-           <a onClick={logout} href='#!'>Consultants</a>
+        <Link to='/dashboard'>
+        <span className="hide-sm">Dashboard</span></Link>
+        </li>
+        <li>
+        <a onClick={logout} href='#!'>
+           <span className="hide-sm">Logout</span></a>
         </li>
     </ul>
     );
 
     const guestLinks = (
-        <ul>
+    <ul>
         <li>
             <Link to="/">
             Consultants
@@ -42,23 +47,7 @@ const Navbar = ({ auth:  { isAuthenticated, loading }, logout }) => {
                 WemoovTeams
                 </Link>
             </h1>
-            <ul>
-                <li>
-                    <Link to="/">
-                    Consultants
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/register">
-                    S'inscrire
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/login">
-                    Connexion
-                    </Link>
-                </li>
-            </ul>
+           { !loading  && (<>{ isAuthenticated ? authLinks : guestLinks }</>) }
         </nav>
     )
 }

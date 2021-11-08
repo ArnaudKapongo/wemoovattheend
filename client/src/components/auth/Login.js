@@ -40,10 +40,9 @@ const Login = ({ login, isAuthenticated }) => {
           onChange={e => onChange(e) }
           required
           name="email" />
-          <small className="form-text"
-            >Le site utilise Gravatar pour les images de profil, utilise
-            Gravatar email</small
-          >
+          <small className="form-text">
+            Le site utilise Gravatar pour les images de profil, utilise
+            Gravatar email</small>
         </div>
         <div className="form-group">
           <input
