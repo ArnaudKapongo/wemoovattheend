@@ -1,18 +1,23 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Spinner from '../layout/Spinner';
 import { getCurrentProfile } from '../../actions/profile';
 
-export const Dashboard = ({ getCurrentProfile, auth, profile }) => {
+export const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
 
     useEffect(() => {
         getCurrentProfile();
     }, []);
-    return (
-        <div>
-            Dashboard
-        </div>
-    )
+    return loading && profile === null ? <Spinner /> : <><h1 className="large text-primary">
+        Dashboard
+        </h1>
+        <p className="lead">Welcome { user && user.name }</p>
+        {profile !== null ? <>has</> : <><p>You have not yet setup a prfile, please add some info</p>
+        <Link to="/create-profile" className="btn btn-primary my-1">Create Profile</Link>
+        </>}
+        </>;
 }
 
 
