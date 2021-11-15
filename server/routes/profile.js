@@ -55,7 +55,7 @@ router.post('/', auth
     if (website) profileFields.website = website;
     if (address) profileFields.address = address;
     if (digit) profileFields.digit = digit;
-    if (description) profileFields.description;
+    if (description) profileFields.description = description;
     if (generalSkills) {
         profileFields.generalSkills = generalSkills.split(',').map(generalSkills => generalSkills.trim());
     }

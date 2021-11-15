@@ -11,11 +11,11 @@ const Navbar = ({ auth:  { isAuthenticated, loading }, logout }) => {
     <ul>
         <li>
         <Link to='/dashboard'>
-        <span className="hide-sm">Dashboard</span></Link>
+        <span className="hide-sm">Tableau de bord</span></Link>
         </li>
         <li>
         <a onClick={logout} href='#!'>
-           <span className="hide-sm">Logout</span></a>
+           <span className="hide-sm">Déconnexion</span></a>
         </li>
     </ul>
     );

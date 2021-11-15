@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { createProfile } from '../../actions/profile';
+import { createProfile, getCurrentProfile } from '../../actions/profile';
 
-const CreateProfile = ({ createProfile, history })=> {
+const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentProfile, history })=> {
 
     const [ formData, setFormData ] = useState({ 
         name:'',
@@ -18,6 +18,19 @@ const CreateProfile = ({ createProfile, history })=> {
     });
 
     const [ displaySocialInputs, toggleSocialInputs ] = useState(false);
+
+    useEffect(() => {
+        getCurrentProfile();
+
+        setFormData({
+            name: loading || !profile.name ? '' : profile.name,
+            website: loading || !profile.website ? '' : profile.website,
+            address: loading || !profile.address ? '' : profile.address,
+            digit: loading || !profile.digit ? '' : profile.digit,
+            generalSkills: loading || !profile.generalSkills ? '' : profile.generalSkills,
+            description: loading || !profile.description ? '' : profile.description
+        });
+    }, [loading]);
 
     const { 
         name,
@@ -35,18 +48,14 @@ const CreateProfile = ({ createProfile, history })=> {
 
   const onSubmit = e => {
     e.preventDefault();
-    createProfile(formData, history);
+    createProfile(formData, history, true);
   }
 
     return (
     <>
       <h1 className="large text-primary">
-       Création de votre profil
+       Mise à jour de votre profil
       </h1>
-      <p className="lead">
-        <i className="fas fa-user"></i> 
-        Recueillons quelques informations pour la présentation de votre profil
-      </p>
       <small>* = Les champs requis</small>
       <form className="form" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
@@ -70,7 +79,7 @@ const CreateProfile = ({ createProfile, history })=> {
             >Le nom de la compagnie</small>
         </div>
         <div className="form-group">
-          <input type="text" placeholder="Numéro de téléphone" name="digit"  value={digit}  onChange={ e => onChange(e)}  />
+          <input type="tel" placeholder="Numéro de téléphone" name="digit"  value={digit}  onChange={ e => onChange(e)}  />
           <small className="form-text"
             >Renseignez votre contact mobile professionnelle</small>
         </div>
@@ -88,13 +97,12 @@ const CreateProfile = ({ createProfile, history })=> {
           <input type="text" placeholder="* Compétences du manager" name="generalSkills"  value={generalSkills} onChange={ e => onChange(e)}  />
           <small className="form-text"
             >S'il vous plaît utiliser des virgules après chaque compétences (exemple:
-            HTML,CSS,JavaScript,PHP)</small
-          >
+            HTML,CSS,JavaScript,PHP)</small>
         </div>
         <div className="form-group">
-          <textarea placeholder="Description" name="description" value={description} onChange={ e => onChange(e)} ></textarea>
+          <textarea  placeholder="Description" name="description" value={description} onChange={ e => onChange(e)}></textarea>
           <small className="form-text">Dites-nous en plus à propos de vous</small>
-        </div>
+            </div> 
 
         <div className="my-2">
           <button onClick={() => toggleSocialInputs(!displaySocialInputs) }  type="button" className="btn btn-light">
@@ -136,9 +144,15 @@ const CreateProfile = ({ createProfile, history })=> {
     )
 }
 
-CreateProfile.propTypes = {
-  createProfile: PropTypes.func.isRequired
-
+EditProfile.propTypes = {
+  createProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired
 }
 
-export default connect(null, { createProfile })(withRouter(CreateProfile))
+const mapStateToProps = state => ({
+  profile: state.profile
+});
+
+
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(withRouter(EditProfile))

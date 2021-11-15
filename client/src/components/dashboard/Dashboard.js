@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
+import DashboardActions from './DashboardActions';
+import Consultant from './Consultant';
 import { getCurrentProfile } from '../../actions/profile';
 
 export const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
@@ -11,10 +13,13 @@ export const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profil
         getCurrentProfile();
     }, []);
     return loading && profile === null ? <Spinner /> : <><h1 className="large text-primary">
-        Dashboard
+        Tableau de bord
         </h1>
-        <p className="lead">Welcome { user && user.name }</p>
-        {profile !== null ? <>has</> : <><p>You have not yet setup a prfile, please add some info</p>
+        <p className="lead">Bienvenu { user && user.name }</p>
+        {profile !== null ? <>
+        <DashboardActions/>
+        <Consultant  consultant={ profile.consultant }/>
+        </> : <><p>You have not yet setup a prfile, please add some info</p>
         <Link to="/create-profile" className="btn btn-primary my-1">Create Profile</Link>
         </>}
         </>;

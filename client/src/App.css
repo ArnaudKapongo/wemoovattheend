@@ -51,6 +51,10 @@ img {
   margin-bottom: 1rem;
 }
 
+textarea {
+  resize: none;
+}
+
 .large {
   font-size: 3rem;
   line-height: 1.2;
@@ -249,6 +253,7 @@ img {
 .form input[type="email"],
 .form input[type="password"],
 .form input[type="date"],
+.form input[type="tel"],
 .form select,
 .form textarea {
   display: block;
