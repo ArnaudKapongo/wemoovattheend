@@ -10,6 +10,14 @@ const Navbar = ({ auth:  { isAuthenticated, loading }, logout }) => {
     const authLinks = (
     <ul>
         <li>
+        <Link to='/profiles'>
+        <span className="hide-sm">Managers</span></Link>
+        </li>
+        <li>
+        <Link to='/posts'>
+        <span className="hide-sm">Disscussions</span></Link>
+        </li>
+        <li>
         <Link to='/dashboard'>
         <span className="hide-sm">Tableau de bord</span></Link>
         </li>
@@ -22,6 +30,10 @@ const Navbar = ({ auth:  { isAuthenticated, loading }, logout }) => {
 
     const guestLinks = (
     <ul>
+        <li>
+        <Link to='/profiles'>
+        <span className="hide-sm">Managers</span></Link>
+        </li>
         <li>
             <Link to="/">
             Consultants

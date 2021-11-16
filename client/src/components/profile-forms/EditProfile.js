@@ -30,7 +30,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
             generalSkills: loading || !profile.generalSkills ? '' : profile.generalSkills,
             description: loading || !profile.description ? '' : profile.description
         });
-    }, [loading]);
+    }, [loading, getCurrentProfile]);
 
     const { 
         name,

@@ -120,7 +120,7 @@ const AddConsultant = ({ addConsultant, history }) => {
           ></textarea>
         </div>
         <input type="submit" className="btn btn-primary my-1" />
-        <a class="btn btn-light my-1" href="dashboard.html">Retour</a>
+        <Link to="/dashboard" className="btn btn-light my-1">Retour</Link>
       </form>
         </>
     )
@@ -130,4 +130,4 @@ AddConsultant.propTypes = {
     addConsultant: PropTypes.func.isRequired
 }
 
-export default connect(null, { addConsultant })(AddConsultant)
+export default connect(null, { addConsultant })(withRouter(AddConsultant));
