@@ -249,6 +249,16 @@ textarea {
   color: #888;
 }
 
+.star {
+  cursor: pointer;
+  transition: color 200ms;
+  margin-left: 1.2em;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
 .form input[type="text"],
 .form input[type="email"],
 .form input[type="password"],

@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addConsultant } from '../../actions/profile';
+import { FaStar }  from 'react-icons/fa';
 
 const AddConsultant = ({ addConsultant, history }) => {
 
@@ -27,6 +28,17 @@ const AddConsultant = ({ addConsultant, history }) => {
         communication: '',
         strength:''
     });
+
+    const [ratingcom, setRatingcom] = useState(null);
+    const [ratingaut, setRatingaut] = useState(null);
+    const [ratingstr, setRatingstr] = useState(null);
+    const [ratingrig, setRatingrig] = useState(null);
+    const [ratingpon, setRatingpon] = useState(null);
+    const [ratingpro, setRatingpro] = useState(null);
+    const [ratingskillstechnical, setRatingskillstechnical] = useState(null);
+    const [ratingskillsfunctional, setRatingskillsfunctional] = useState(null);
+    const [ratingtec, setRatingtec ] = useState(null);
+    const [ratingtra, setRatingtra ] = useState(null);
 
     const { month, 
         name, 
@@ -70,19 +82,71 @@ const AddConsultant = ({ addConsultant, history }) => {
           <input type="text" placeholder="Mois" name="month" value={month} onChange={ e => onChange(e)} />
         </div>
         <div className="form-group">
-          <input type="text" placeholder="Communication" name="communication" value={communication} onChange={ e => onChange(e)} />
+          <span>Communication</span>
+          {
+            [...Array(5)].map((star, index) => {
+
+              const ratingValue = index + 1;
+
+              return <label> 
+                     <input type="radio" name="communication" value={ratingValue} onChange={ e => onChange(e)} onClick={() => setRatingcom(ratingValue)}/>
+                     <FaStar className="star" color={ratingValue <= ratingcom ? '#ffc107' : '#e4e5e9'} size={50} />
+                     </label>;
+            })}
         </div>
         <div className="form-group">
-            <input type="number" placeholder="Autonomie" name="autonomy" value={autonomy} onChange={ e => onChange(e)}  />
+          <span>Autonomie</span>
+          {
+            [...Array(5)].map((star, index) => {
+
+              const ratingValue = index + 1;
+
+              return <label> 
+                     <input type="radio" name="autonomy" value={ratingValue} onChange={ e => onChange(e)} onClick={() => setRatingaut(ratingValue)}/>
+                     <FaStar className="star" color={ratingValue <= ratingaut ? '#ffc107' : '#e4e5e9'} size={50} />
+                     </label>;
+            })}
         </div>
         <div className="form-group">
-            <input type="number" placeholder="Force de proposition" name="strength" value={strength} onChange={ e => onChange(e)}  />
+          <span>Force de proposition</span>
+          {
+            [...Array(5)].map((star, index) => {
+
+              const ratingValue = index + 1;
+
+              return <label> 
+                     <input type="radio" name="strength" value={ratingValue} onChange={ e => onChange(e)} onClick={() => setRatingstr(ratingValue)}/>
+                     <FaStar className="star" color={ratingValue <= ratingstr ? '#ffc107' : '#e4e5e9'} size={50} />
+                     </label>;
+            })}
         </div>
+
         <div className="form-group">
-            <input type="number" placeholder="Rigueur" name="rigor" value={rigor} onChange={ e => onChange(e)} />
+          <span>Rigueur</span>
+          {
+            [...Array(5)].map((star, index) => {
+
+              const ratingValue = index + 1;
+
+              return <label> 
+                     <input type="radio" name="rigor" value={ratingValue} onChange={ e => onChange(e)} onClick={() => setRatingrig(ratingValue)}/>
+                     <FaStar className="star" color={ratingValue <= ratingrig ? '#ffc107' : '#e4e5e9'} size={50} />
+                     </label>;
+            })}
         </div>
+
         <div className="form-group">
-            <input type="number" placeholder="Ponctualité" name="punctuality" value={punctuality} onChange={ e => onChange(e)}  />
+          <span>Ponctualité</span>
+          {
+            [...Array(5)].map((star, index) => {
+
+              const ratingValue = index + 1;
+
+              return <label> 
+                     <input type="radio" name="punctuality" value={ratingValue} onChange={ e => onChange(e)} onClick={() => setRatingpon(ratingValue)}/>
+                     <FaStar className="star" color={ratingValue <= ratingpon ? '#ffc107' : '#e4e5e9'} size={50} />
+                     </label>;
+            })}
         </div>
         <div className="form-group">
           <textarea
@@ -95,20 +159,75 @@ const AddConsultant = ({ addConsultant, history }) => {
         </div>
 
         <div className="form-group">
-          <input type="number" placeholder="Progression" name="progress" value={progress} onChange={ e => onChange(e)}  />
+          <span>Progression</span>
+          {
+            [...Array(5)].map((star, index) => {
+
+              const ratingValue = index + 1;
+
+              return <label> 
+                     <input type="radio" name="progress" value={ratingValue} onChange={ e => onChange(e)} onClick={() => setRatingpro(ratingValue)}/>
+                     <FaStar className="star" color={ratingValue <= ratingpro ? '#ffc107' : '#e4e5e9'} size={50} />
+                     </label>;
+            })}
         </div>
+
         <div className="form-group">
-            <input type="number" placeholder="Compétences technique" name="skillstechnical" value={skillstechnical} onChange={ e => onChange(e)}   />
+          <span>Compétences technique</span>
+          {
+            [...Array(5)].map((star, index) => {
+
+              const ratingValue = index + 1;
+
+              return <label> 
+                     <input type="radio" name="skillstechnical" value={ratingValue} onChange={ e => onChange(e)} onClick={() => setRatingskillstechnical(ratingValue)}/>
+                     <FaStar className="star" color={ratingValue <= ratingskillstechnical ? '#ffc107' : '#e4e5e9'} size={50} />
+                     </label>;
+            })}
         </div>
+
         <div className="form-group">
-            <input type="number" placeholder="Compétence fonctionnel" name="skillsfunctional" value={skillsfunctional} onChange={ e => onChange(e) }/>
+          <span>Compétences fonctionnel</span>
+          {
+            [...Array(5)].map((star, index) => {
+
+              const ratingValue = index + 1;
+
+              return <label> 
+                     <input type="radio" name="skillsfunctional" value={ratingValue} onChange={ e => onChange(e)} onClick={() => setRatingskillsfunctional(ratingValue)}/>
+                     <FaStar className="star" color={ratingValue <= ratingskillsfunctional ? '#ffc107' : '#e4e5e9'} size={50} />
+                     </label>;
+            })}
         </div>
+        
         <div className="form-group">
-            <input type="number" placeholder="Réalisation technique" name="realisation" value={realisation} onChange={ e => onChange(e)}/>
+          <span>Réalisation technique</span>
+          {
+            [...Array(5)].map((star, index) => {
+
+              const ratingValue = index + 1;
+
+              return <label> 
+                     <input type="radio" name="realisation" value={ratingValue} onChange={ e => onChange(e)} onClick={() => setRatingtec(ratingValue)}/>
+                     <FaStar className="star" color={ratingValue <= ratingtec ? '#ffc107' : '#e4e5e9'} size={50} />
+                     </label>;
+            })}
         </div>
+
         <div className="form-group">
-            <input type="number" placeholder="Transfert de compétences" name="transfert" value={transfert} onChange={ e => onChange(e)} />
+          <span>Transfert de compétence</span>
+          {
+            [...Array(5)].map((star, index) => {
+
+              const ratingValue = index + 1;
+
+              return <label> 
+                     <input type="radio" name="transfert" value={ratingValue} onChange={ e => onChange(e)} onClick={() => setRatingtra(ratingValue)}/>
+                     <FaStar className="star" color={ratingValue <= ratingtra ? '#ffc107' : '#e4e5e9'} size={50} />
+                     </label>;
+            })}
         </div>
+        
         <div className="form-group">
           <textarea
             value={remark}
