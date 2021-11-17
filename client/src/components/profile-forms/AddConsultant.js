@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+//import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { addConsultant } from '../../actions/profile';
 import { FaStar }  from 'react-icons/fa';
+import Moment from 'react-moment';
+import moment from 'moment';
 
 const AddConsultant = ({ addConsultant, history }) => {
 
@@ -60,6 +63,7 @@ const AddConsultant = ({ addConsultant, history }) => {
             ...formData, [e.target.name]: e.target.value
         });
     
+    const currentDateTime = moment();
 
     return (
     <>
@@ -79,8 +83,29 @@ const AddConsultant = ({ addConsultant, history }) => {
           <input type="text" placeholder="Prénom du candidat" name="surname" required value={surname} onChange={ e => onChange(e)}  />
         </div>
         <div className="form-group">
-          <input type="text" placeholder="Mois" name="month" value={month} onChange={ e => onChange(e)} />
+          <select  name="month" value={month} onChange={ e => onChange(e)}>
+              <option value="Janvier">Janvier</option>
+              <option value="Février">Février</option>
+              <option value="Mars">Mars</option>
+              <option value="Avril">Avril</option>
+              <option value="Mai">Mai</option>
+              <option value="Juin">Juin</option>
+              <option value="Juillet">Juillet</option>
+              <option value="Août">Août</option>
+              <option value="Septembre">Septembre</option>
+              <option value="Octobre">Octobre</option>
+              <option value="Novembre">Novembre</option>
+              <option value="Décembre">Décembre</option>
+          </select>
         </div>
+       {/* <div className="form-group"> 
+          {
+            <Moment format='YYYY'>{currentDateTime}</Moment>
+          }
+        </div> */}
+        {/*<div className="form-group">
+          <input type="text" placeholder="Mois" name="month" value={month} onChange={ e => onChange(e)} />
+    </div>*/}
         <div className="form-group">
           <span>Communication</span>
           {

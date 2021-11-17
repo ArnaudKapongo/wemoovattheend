@@ -13,14 +13,14 @@ const Consultant = ({ consultant, deleteConsultant }) => {
             <td>{cons.month}</td>
             <td>{cons.communication}</td>
             <td>{cons.autonomy}</td>
-            {/*<td>{cons.strength}</td>
+            <td>{cons.strength}</td>
             <td>{cons.rigor}</td>
             <td>{cons.punctuality}</td>
             <td>{cons.progress}</td>
             <td>{cons.skillstechnical}</td>
             <td>{cons.skillsfunctional}</td>
             <td>{cons.transfert}</td>
-    <td>{cons.realisation}</td> */}
+    <td>{cons.realisation}</td> 
             <td><button onClick={() => deleteConsultant(cons._id)} className='btn btn-danger'>Supprimer</button></td>
       </tr>
     ));
@@ -29,23 +29,24 @@ const Consultant = ({ consultant, deleteConsultant }) => {
     return (
         <>
           <h2 className="my-2">Consultants</h2>
-          <table className="table">
+
+          <table>
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th className="hide-sm">Surname</th>
-                    <th className="hide-sm">Month</th>
-                    <th className="hide-sm">communication</th>
-                    <th className="hide-sm">Autonomie</th>
-                    {/*<th className="hide-sm">Force de proposition</th>
-                    <th className="hide-sm">Rigueur</th>
-                    <th className="hide-sm">Ponctualité</th>
+                    <th>Surname</th>
+                    <th>Month</th>
+                    <th>communication</th>
+                    <th>Autonomie</th>
+                    <th>Force de proposition</th>
+                    <th>Rigueur</th>
+                    <th>Ponctualité</th>
 
-                    <th className="hide-sm">Progression</th>
-                    <th className="hide-sm">Compétences techniques</th>
-                    <th className="hide-sm">Compétences fonctionnel</th>
-                    <th className="hide-sm">Réalisation technique</th>
-    <th className="hide-sm">Transfert de compétence</th> */}
+                    <th>Progression</th>
+                    <th>Compétences techniques</th>
+                    <th>Compétences fonctionnel</th>
+                    <th>Réalisation technique</th>
+                    <th>Transfert de compétence</th> 
                 </tr>
             </thead>
             <tbody>
