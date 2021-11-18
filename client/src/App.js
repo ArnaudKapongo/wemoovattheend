@@ -14,6 +14,7 @@ import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
 import PrivateRoute from './components/routing/PrivateRoute';
+
 import './App.css';
 
 // Redux
@@ -38,7 +39,8 @@ const App = () => {
       <Router>
       <Navbar/>  
            <Route  exact path="/" component={Landing} />
-         <section className="container">
+         {/*<section className={(pathname === "/dashboard") ? "containerDashboard" : "container" }>*/}
+          <section className="containerDashboard">
            <Alert/>
            <Switch>
             <Route exact path="/register" component={Register} />
@@ -51,6 +53,7 @@ const App = () => {
             <PrivateRoute exact path="/add-consultant" component={AddConsultant} />
             <PrivateRoute exact path="/posts" component={Posts} />
             <PrivateRoute exact path="/posts/:id" component={Post} />
+            {/*<PrivateRoute exact path="" */}
           </Switch>
          </section>
        </Router>

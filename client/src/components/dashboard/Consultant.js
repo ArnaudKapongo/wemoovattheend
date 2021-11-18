@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { deleteConsultant } from '../../actions/profile';
 
 const Consultant = ({ consultant, deleteConsultant }) => {
@@ -22,9 +23,10 @@ const Consultant = ({ consultant, deleteConsultant }) => {
             <td>{cons.transfert}</td>
     <td>{cons.realisation}</td> 
             <td><button onClick={() => deleteConsultant(cons._id)} className='btn btn-danger'>Supprimer</button></td>
+            <td> {/*<button className='btn btn-success'>Visualiser</button> */} <Link to={`/dashboard/${cons._id}`} className="btn btn-success"
+          ><i class="fab fa-black-tie text-primary"></i> Visualiser </Link></td>
       </tr>
     ));
-
 
     return (
         <>
@@ -41,12 +43,11 @@ const Consultant = ({ consultant, deleteConsultant }) => {
                     <th>Force de proposition</th>
                     <th>Rigueur</th>
                     <th>Ponctualité</th>
-
                     <th>Progression</th>
                     <th>Compétences techniques</th>
                     <th>Compétences fonctionnel</th>
                     <th>Réalisation technique</th>
-                    <th>Transfert de compétence</th> 
+                    <th>Transfert de compétence</th>
                 </tr>
             </thead>
             <tbody>
