@@ -2,48 +2,41 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Spinner from '../layout/Spinner';
-import DashboardActions from './DashboardActions';
-import Consultant from './Consultant';
-import { deleteAccount, getCurrentProfile } from '../../actions/profile';
+//import Consultant from './Consultant';
+import ConsultantItem from '../consultants/ConsultantItem';
+import { getConsultantsByCompany, getConsultants } from '../../actions/consultants';
 
-export const Dashboard = ({ getCurrentProfile, 
-    auth: { user }, 
-    profile: { profile, loading },
-    deleteAccount }) => {
+
+export const Dashboard = ({ getConsultants , getConsultantsByCompany, consultant: { consultants, loading }, auth  }) => {
 
     useEffect(() => {
-        getCurrentProfile();
-    }, [getCurrentProfile]);
-    return loading && profile === null ? <Spinner /> : <><h1 className="large text-primary">
-        Tableau de bord
-        </h1>
-        <p className="lead">Bienvenu { user && user.name }</p>
-        {profile !== null ? <>
-        <DashboardActions/>
-        <Consultant  consultant={ profile.consultant }/>
-        <div className="my-2">
-            <button className="btn btn-danger" onClick={() => deleteAccount()}>
-                Supprimer votre compte
-            </button>
+        if(auth.user.name == "wemoov" ) {
+            getConsultants();
+        } else {
+            getConsultantsByCompany();
+        }
+    }, []);
+    
+    return (
+        <div className="container-app">
+             { consultants.map(consultant => (
+                    <ConsultantItem key={consultant._id} consultant={consultant} />
+                ))}
         </div>
-        </> : <><p>You have not yet setup a prfile, please add some info</p>
-        <Link to="/create-profile" className="btn btn-primary my-1">Crée votre profil</Link>
-        </>}
-        </>;
+    )
+    
 }
 
-
 Dashboard.propTypes = {
-    getCurrentProfile: PropTypes.func.isRequired,
-    deleteAccount: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
-    profile: PropTypes.object.isRequired
+    getConsultants: PropTypes.func.isRequired,
+    getConsultantsByCompany: PropTypes.func.isRequired,
+    consultant: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-      auth: state.auth,
-      profile: state.profile
+    consultant: state.consultant,
+    auth: state.auth
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(Dashboard);
+export default connect(mapStateToProps, { getConsultantsByCompany, getConsultants } )(Dashboard);

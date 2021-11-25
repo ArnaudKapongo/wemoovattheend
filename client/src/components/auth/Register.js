@@ -3,15 +3,16 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
+import { Container, Button, Paper, Typography, TextField } from '@material-ui/core'
 import PropTypes from 'prop-types';
+import wemoov from './wemoov.png';
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
 
     const [ formData, setFormData ] = useState({
         name: '',
         email: '',
-        password: '',
-        password2: ''
+        password: ''
     });
 
     const { name, email, password, password2 } = formData;
@@ -23,11 +24,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
     const onSubmit = async e => {
         e.preventDefault();
-        if(password !== password2)  {
-           setAlert('Password do not match', 'danger');
-        } else {
+        
             register({ name, email, password });
-        }
+        
     }
 
     if(isAuthenticated) {
@@ -35,56 +34,79 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     }
 
     return (
-    <>
-      <h1 className="large text-primary">S'inscrire</h1>
-      <p className="lead"><i className="fas fa-user"></i> Crée votre compte</p>
-      <form className="form" onSubmit={e => onSubmit(e)}>
-        <div className="form-group">
-          <input type="text" 
-          placeholder="Nom de la société" 
-          name="name" 
-          value={name}  
-          onChange={e => onChange(e)}
-          required />
-        </div>
-        <div className="form-group">
-          <input type="email" 
-          placeholder="Adresse email"
-          value={email}
-          onChange={e => onChange(e) }
-          required
-          name="email" />
-          <small className="form-text"
-            >Le site utilise Gravatar pour les images de profil, utilise
-            Gravatar email</small
-          >
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            placeholder="Mot de passe"
+      <Container maxWidth="md" style={{
+        height: '-webkit-fill-available',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute', 
+        left: '50%', 
+        top: '50%',
+        transform: 'translate(-50%, -50%)'
+    }}>
+    
+        <Paper elevation={4} style={{
+            padding: 36,
+            display: 'flex',
+            width: '40%',
+            flexDirection: 'column',
+            alignItems: 'center'
+        }}>
+            <form onSubmit={onSubmit}>
+            <img src={wemoov} alt={wemoov} className="wemoovimage"/>
+            <TextField variant="outlined" 
+            value={email}
+            onChange={onChange}
+            name="email"
+            label="Email" 
+            type="text" 
+            style={{
+                marginTop: 30,
+                marginBottom: 30
+            }} fullWidth/>
+           
+            <TextField variant="outlined" 
+            label="Nom de la société" 
+            type="text" 
+            onChange={onChange}
+            name="name"
+            value={name}
+            style={{
+                marginBottom: 30
+            }} 
+            fullWidth/>
+            <TextField variant="outlined" 
+            label="Mot de passe" 
+            type="password" 
+            onChange={onChange}
             name="password"
-            minLength="6"
             value={password}
-            onChange={e => onChange(e) }
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            placeholder="Confirmer le mot de passe"
-            name="password2"
-            minLength="6"
-            value={password2}
-            onChange={e => onChange(e) }
-          />
-        </div>
-        <input type="submit" className="btn btn-primary" value="S'inscrire" />
-      </form>
-      <p className="my-1">
-        Vous avez déjà un compte ? <Link to="/login">Connexion</Link>
-      </p>
-      </>
+            fullWidth/>
+            
+            <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            type="submit"
+            style={{
+                marginTop: 30,
+                marginBottom: 5
+            }}
+            >
+               S'inscrire
+            </Button>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                width: '100%'
+            }}>
+                <Typography>
+                    Connexion
+                </Typography>
+            </div>
+            </form>
+        </Paper>
+    </Container>
     )
 }
 

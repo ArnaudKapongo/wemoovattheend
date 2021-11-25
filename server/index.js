@@ -29,6 +29,7 @@ app.use('/api/users', require('./routes/users'));
 app.use('/api/profile', require('./routes/profile'));
 app.use('/api/posts', require('./routes/posts'));
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/consultant', require('./routes/consultant'));
 
 // Server running on PORT
 app.listen(PORT, () => {

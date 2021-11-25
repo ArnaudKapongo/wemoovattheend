@@ -50,19 +50,7 @@ const CreateProfile = ({ createProfile, history })=> {
       <small>* = Les champs requis</small>
       <form className="form" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
-         { /* <select name="status">
-            <option value="0">* Sélectionner votre statut</option>
-            <option value="Developer">Developer</option>
-            <option value="Junior Developer">Junior Developer</option>
-            <option value="Senior Developer">Senior Developer</option>
-            <option value="Manager">Manager</option>
-            <option value="Student or Learning">Student or Learning</option>
-            <option value="Instructor">Instructor or Teacher</option>
-            <option value="Intern">Intern</option>
-            <option value="Other">Other</option>
-          </select>
-          <small className="form-text"
-    >Votre statut au sein de votre entreprise.</small>  */}
+         
         </div>
         <div className="form-group">
           <input type="text" placeholder="Société" name="name" value={name} onChange={ e => onChange(e)} />

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { Container, Button, Paper, Typography, TextField } from '@material-ui/core'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
+import wemoov from './wemoov.png';
 
 const Login = ({ login, isAuthenticated }) => {
 
@@ -29,37 +31,70 @@ const Login = ({ login, isAuthenticated }) => {
     }
 
     return (
-    <>
-      <h1 className="large text-primary">Connexion</h1>
-      <p className="lead"><i className="fas fa-user"></i> Accéder à votre compte</p>
-      <form className="form" onSubmit={e => onSubmit(e)}>
-        <div className="form-group">
-          <input type="email" 
-          placeholder="Adresse email"
-          value={email}
-          onChange={e => onChange(e) }
-          required
-          name="email" />
-          <small className="form-text">
-            Le site utilise Gravatar pour les images de profil, utilise
-            Gravatar email</small>
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            placeholder="Mot de passe"
+      <Container maxWidth="md" style={{
+        height: '-webkit-fill-available',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute', 
+        left: '50%', 
+        top: '50%',
+        transform: 'translate(-50%, -50%)'
+    }}>
+    
+        <Paper elevation={4} style={{
+            padding: 36,
+            display: 'flex',
+            width: '40%',
+            flexDirection: 'column',
+            alignItems: 'center'
+        }}>
+            <form onSubmit={onSubmit}>
+            <img src={wemoov} alt={wemoov} className="wemoovimage"/>
+            <TextField variant="outlined" 
+            value={email}
+            onChange={onChange}
+            name="email"
+            label="Email" 
+            type="text" 
+            style={{
+                marginTop: 30,
+                marginBottom: 30
+            }} fullWidth/>
+           
+            
+            <TextField variant="outlined" 
+            label="Mot de passe" 
+            type="password" 
+            onChange={onChange}
             name="password"
-            minLength="6"
             value={password}
-            onChange={e => onChange(e) }
-          />
-        </div>
-        <input type="submit" className="btn btn-primary" value="Connexion" />
-      </form>
-      <p className="my-1">
-        Vous n'avez pas de compte ? <Link to="/register">S'inscrire</Link>
-      </p>
-      </>
+            fullWidth/>
+            
+            <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            type="submit"
+            style={{
+                marginTop: 30,
+                marginBottom: 5
+            }}
+            >
+               Connexion
+            </Button>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                width: '100%'
+            }}>
+                <Typography>
+                    {/*Connexion*/}
+                </Typography>
+            </div>
+            </form>
+        </Paper>
+    </Container>
     )
 }
 Login.prototype = {
